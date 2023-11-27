@@ -1,0 +1,38 @@
+@use "@/styles/variables/colors.module";
+
+.container {
+  background-color: colors.$gray-800;
+  width: 17.75rem;
+  height: 100vh;
+  height: 100dvh;
+  padding: 1.5rem 1rem;
+
+  position: absolute;
+  top: 0;
+  left: 17.75rem;
+  z-index: 10;
+
+  transition: all linear 0.2s;
+
+  h5 {
+    color: colors.$white;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+  }
+}
+
+.sidebar {
+  background-color: colors.$gray-800;
+}
+
+.collapsed {
+  left: 5rem;
+}

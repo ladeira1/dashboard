@@ -1,0 +1,101 @@
+$primary-dark: #53389E;
+$primary-main: #7F56D9;
+$primary-light: #D6BBFB;
+$primary-lighter: #F4EBFF;
+$primary-lightest: #F9F5FF;
+
+$text-primary: #101828;
+$text-secondary: #667085;
+$text-disable: #98A2B3;
+
+$line-divider: #E4E7EC;
+$line-border: #D0D5DD;
+
+$gray-900: #101828;
+$gray-800: #1D2939;
+$gray-700: #344054;
+$gray-600: #475467;
+$gray-500: #667085;
+$gray-400: #98A2B3;
+$gray-300: #D0D5DD;
+$gray-200: #E4E7EC;
+$gray-100: #F2F4F7;
+$gray-50: #F9FAFB;
+$white: #FFFFFF;
+$black: #131313;
+
+$error-dark: #912018;
+$error-main: #F04438;
+$error-light: #FDA29B;
+$error-lighter: #FEE4E2;
+$error-lightest: #FEF3F2;
+
+$warning-dark: #93370D;
+$warning-main: #F79009;
+$warning-light: #FEC84B;
+$warning-lighter: #FEF0C7;
+$warning-lightest: #FFFAEB;
+
+$success-dark: #05603A;
+$success-main: #12B76A;
+$success-light: #6CE9A6;
+$success-lighter: #D1FADF;
+$success-lightest: #ECFDF3;
+
+$info-dark: #1849A9;
+$info-main: #1880F0;
+$info-light: #84CAFF;
+$info-lighter: #D1E9FF;
+$info-lightest: #EFF8FF;
+
+:export {
+  primary-dark: $primary-dark;
+  primary-main: $primary-main;
+  primary-light: $primary-light;
+  primary-lighter: $primary-lighter;
+  primary-lightest: $primary-lightest;
+
+  text-primary: $text-primary;
+  text-secondary: $text-secondary;
+  text-disable: $text-disable;
+
+  line-divider: $line-divider;
+  line-border: $line-border;
+
+  gray-900: $gray-900;
+  gray-800: $gray-800;
+  gray-700: $gray-700;
+  gray-600: $gray-600;
+  gray-500: $gray-500;
+  gray-400: $gray-400;
+  gray-300: $gray-300;
+  gray-200: $gray-200;
+  gray-100: $gray-100;
+  gray-50: $gray-50;
+  white: $white;
+  black: $black;
+
+  error-dark: $error-dark;
+  error-main: $error-main;
+  error-light: $error-light;
+  error-lighter: $error-lighter;
+  error-lightest: $error-lightest;
+
+  warning-dark: $warning-dark;
+  warning-main: $warning-main;
+  warning-light: $warning-light;
+  warning-lighter: $warning-lighter;
+  warning-lightest: $warning-lightest;
+
+  success-dark: $success-dark;
+  success-main: $success-main;
+  success-light: $success-light;
+  success-lighter: $success-lighter;
+  success-lightest: $success-lightest;
+
+  info-dark: $info-dark;
+  info-main: $info-main;
+  info-light: $info-light;
+  info-lighter: $info-lighter;
+  info-lightest: $info-lightest;
+}

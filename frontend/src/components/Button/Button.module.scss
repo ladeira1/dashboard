@@ -1,0 +1,157 @@
+@use '@/styles/variables/colors.module';
+
+.button {
+
+  &:not(.unstyled) {
+    border-radius: 0.25rem;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  transition: all ease 0.2s;
+
+  svg {
+    transition: all ease 0.2s;
+  }
+}
+
+.primary {
+  background-color: colors.$primary-main;
+  font-weight: 500;
+  color: colors.$white;
+
+  svg {
+    fill: colors.$white;
+  }
+
+  &:hover:not(:disabled):not(:active),
+  &:focus-within:not(:disabled):not(:active) {
+    box-shadow: 0px 0.5rem 1.5625rem 0px #0000000F;
+    filter: brightness(105%);
+  }
+
+  &:active:not(:disabled) {
+    background-color: colors.$primary-dark;
+  }
+
+  &:disabled {
+    background-color: colors.$text-disable;
+    opacity: 30%;
+  }
+}
+
+.secondary {
+  background-color: colors.$white;
+  border: 1px solid colors.$primary-main;
+  font-weight: 500;
+  color: colors.$primary-main;
+
+  svg {
+    fill: colors.$primary-main;
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    background-color: colors.$primary-lighter;
+    border-color: colors.$primary-lighter;
+  }
+
+  &:focus-within:not(:disabled):not(:active),
+  &:focus:not(:disabled):not(:active) {
+    background-color: colors.$white;
+    border: 2px solid colors.$line-border;
+    color: colors.$text-primary;
+
+    svg {
+      fill: colors.$text-primary;
+    }
+  }
+
+  &:active:not(:disabled) {
+    background-color: colors.$gray-100;
+    border: 2px solid colors.$line-border;
+    color: colors.$text-primary;
+
+    svg {
+      fill: colors.$text-primary;
+    }
+  }
+
+  &:disabled {
+    background-color: colors.$white;
+    border: 2px solid colors.$line-border;
+    color: colors.$text-disable;
+
+    svg {
+      fill: colors.$text-disable;
+    }
+  }
+}
+
+.tertiary {
+  background-color: colors.$white;
+  border: 1px solid colors.$line-border;
+  font-weight: 500;
+  color: colors.$text-primary;
+
+  svg {
+    fill: colors.$text-primary;
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    background-color: colors.$gray-100;
+    border-color: colors.$gray-100;
+  }
+
+  &:focus-within:not(:disabled):not(:active),
+  &:focus:not(:disabled):not(:active) {
+    background-color: colors.$white;
+    border: 2px solid colors.$line-border;
+  }
+
+  &:active:not(:disabled) {
+    background-color: colors.$gray-100;
+    border: 2px solid colors.$line-border;
+  }
+
+  &:disabled {
+    background-color: colors.$white;
+    border: 2px solid colors.$white;
+    color: colors.$text-disable;
+
+    svg {
+      fill: colors.$text-disable;
+    }
+  }
+}
+
+@mixin button-size ($width, $height, $font-size, $gap) {
+  min-width: $width;
+  min-height: $height;
+  font-size: $font-size;
+  gap: $gap;
+}
+
+.large {
+  @include button-size(10.1875rem, 3.5rem, 1rem, 0.5rem);
+}
+
+.medium {
+  @include button-size(9.1875rem, 3rem, 1rem, 0.5rem);
+}
+
+.small {
+  @include button-size(7.3125rem, 2.5rem, 0.875rem, 0.5rem);
+}
+
+.extra-small {
+  @include button-size(5.1875rem, 2rem, 0.75rem, 0.25rem);
+}
+
+.unstyled {
+  background-color: inherit;
+  width: inherit;
+  height: inherit;
+}

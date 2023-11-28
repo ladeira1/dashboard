@@ -36,8 +36,8 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   // font: 400 1rem 'Inter', sans-serif;
@@ -90,4 +90,18 @@ button {
 h1 {
   font-size: 1rem;
   letter-spacing: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
 }

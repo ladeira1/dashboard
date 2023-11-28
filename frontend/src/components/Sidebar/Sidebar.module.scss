@@ -1,0 +1,81 @@
+@use "@/styles/variables/colors.module";
+
+.container {
+  background-color: colors.$gray-900;
+
+  height: 100vh;
+  height: 100dvh;
+  width: 17.75rem;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all linear 0.2s;
+
+  img {
+    max-width: fit-content;
+  }
+
+  nav {
+    flex: 1;
+  }
+}
+
+.collapsed {
+  width: 5rem;
+}
+
+.header {
+  padding: 1.5rem 2.5rem 0.75rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  position: relative;
+
+  div {
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  h6 {
+    color: colors.$white;
+  }
+
+  p {
+    color: colors.$gray-300;
+  }
+}
+
+.collapseButton {
+  background-color: colors.$gray-700 !important;
+  border-radius: 0.625rem 0 0 0.625rem;
+  min-height: 2.5rem;
+  padding: 0;
+
+  position: absolute;
+  right: 0;
+  top: calc(50% - 0.9375rem);
+}
+
+.list {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer {
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.75rem;
+  background-color: inherit;
+
+  border-top: 1px solid colors.$gray-600;
+
+  button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,37 @@
+@use "@/styles/variables/colors.module";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: 3rem;
+
+  background-color: colors.$gray-900;
+  transition: filter ease 0.2s;
+
+  p {
+    color: colors.$white;
+  }
+
+  &:hover {
+    filter: brightness(130%);
+  }
+}
+
+.current {
+  background-color: colors.$gray-700;
+}
+
+.collapsed {
+  justify-content: center;
+}
+
+.button {
+  max-width: fit-content;
+  margin-left: auto;
+}

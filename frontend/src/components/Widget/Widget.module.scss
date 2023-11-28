@@ -1,0 +1,36 @@
+@use "@/styles/variables/colors.module";
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  background-color: colors.$white;
+  border: 1px solid colors.$line-border;
+  border-radius: 0.5rem;
+
+  padding: 1.5rem;
+  flex: 1;
+
+  height: 100%;
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media screen and (min-width: breakpoints.$small) {
+    min-width: max(80vw, 20.4375rem);
+    max-width: fit-content;
+  }
+}
+
+.iconContainer {
+  background-color: colors.$primary-lighter;
+  width: 2rem;
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}

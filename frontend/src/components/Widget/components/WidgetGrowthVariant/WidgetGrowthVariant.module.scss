@@ -1,0 +1,44 @@
+@use "@/styles/variables/colors.module";
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  margin-top: 0.3125rem;
+
+  h2 {
+    color: colors.$text-primary;
+  }
+
+  footer {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: breakpoints.$small) {
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.valuesContainer {
+  display: flex;
+  padding: 0.25rem;
+  border-top-left-radius: 3.125rem;
+  border-bottom-left-radius: 3.125rem;
+  border-top-right-radius: 3.125rem;
+  border-bottom-right-radius: 3.125rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0 0.5rem;
+    margin: 0.125rem 0;
+  }
+
+  div:first-child {
+    border-right: 1px solid colors.$line-border;
+  }
+}

@@ -1,0 +1,30 @@
+@use "@/styles/variables/colors.module";
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2.2813rem;
+  margin-top: 1rem;
+
+  ul p {
+    color: colors.$text-secondary;
+  }
+
+  ul h3 {
+    color: colors.$text-primary;
+  }
+
+  @media screen and (max-width: breakpoints.$small) {
+    ul p {
+      font-size: 0.75rem;
+    }
+
+    ul h3 {
+      font-size: 1rem;
+    }
+
+    gap: 1rem;
+  }
+}

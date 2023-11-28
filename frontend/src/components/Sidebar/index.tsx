@@ -13,7 +13,7 @@ import { SidebarItem } from "./components/SidebarItem"
 import { useEffect, useState } from "react"
 import { SubItemsProps } from "./components/SubItems/SubItems.interface"
 import { SubItems } from "./components/SubItems"
-import { useBreakpoint } from "../../hooks/useBreakpoint"
+import { useSidebar } from "../../contexts/SidebarContext"
 
 const STORE = {
   icon: "/logo.png",
@@ -77,17 +77,10 @@ const FOOTER_ITEM = {
 
 export const Sidebar = () => {
   const pathname = usePathname()
-  const isMobile = useBreakpoint(600, "smaller")
-
   const [subItemsProps, setSubItemsProps] = useState<SubItemsProps>()
-  const [isCollapsed, setIsCollapsed] = useState(true)
+  const { isCollapsed, isMobile, handleToggleIsCollapsed } = useSidebar()
 
   const collapseIcon = isCollapsed ? HiChevronRight : HiChevronLeft;
-
-  const handleToggleIsCollapsed = () => {
-    if(isMobile) return;
-    setIsCollapsed(oldState => !oldState)
-  }
 
   const handleClickSubItems = (name: string) => {
     if(subItemsProps?.name === name) {
@@ -104,13 +97,9 @@ export const Sidebar = () => {
     })
   }
 
-  useEffect(() => {
-    if(isMobile && !isCollapsed) setIsCollapsed(true)
-  }, [isMobile])
-
   return (
     <>
-      <aside className={handleClassNames([styles.container, isCollapsed && styles.collapsed])}>
+      <aside id="sidebar" className={handleClassNames([styles.container, isCollapsed && styles.collapsed])}>
         <header className={styles.header}>
           <Image src={STORE.icon} alt="logo" width={"32"} height={"42"} />
 

@@ -7,10 +7,17 @@
   height: 100dvh;
   width: 17.75rem;
 
+  display: flex;
+  flex-direction: column;
+
   transition: all linear 0.2s;
 
   img {
     max-width: fit-content;
+  }
+
+  nav {
+    flex: 1;
   }
 }
 
@@ -59,7 +66,10 @@
 }
 
 .footer {
-  padding: 2.3125rem 0;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 0.75rem;
   background-color: inherit;
 

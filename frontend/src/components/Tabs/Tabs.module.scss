@@ -1,0 +1,35 @@
+@use "@/styles/variables/colors.module";
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  >ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media screen and (max-width: breakpoints.$small) {
+      flex-direction: column;
+
+      li {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.button {
+  color: colors.$text-secondary;
+  border-bottom: 2px solid colors.$white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 1rem;
+
+  &:hover {
+    color: colors.$primary-main;
+  }
+}
+
+.buttonCurrent {
+  color: colors.$primary-main;
+  border-bottom: 2px solid colors.$primary-main;
+}

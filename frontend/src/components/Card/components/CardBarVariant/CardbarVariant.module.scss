@@ -1,0 +1,44 @@
+@use "@/styles/variables/colors.module";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+  gap: 3rem;
+  flex: 1;
+  width: 100%;
+
+  >li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    p:not(.textPrimary) {
+      color: colors.$text-secondary;
+      text-align: right;
+      width: 5rem;
+    }
+  }
+}
+
+.bar {
+  flex: 1;
+  background-color: colors.$line-divider;
+  height: 3.4375rem;
+  border-radius: 0.5rem;
+
+  >div {
+    transform-origin: left;
+    height: 100%;
+    width: 100%;
+    background-color: colors.$primary-main;
+    border-radius: 0.5rem;
+
+    transition: transform ease 0.2s;
+  }
+}
+
+.textPrimary {
+  color: colors.$text-primary;
+}

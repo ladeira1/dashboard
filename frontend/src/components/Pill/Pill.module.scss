@@ -1,0 +1,22 @@
+@use "@/styles/variables/colors.module";
+
+.container {
+  display: flex;
+  padding: 0.25rem;
+  border-top-left-radius: 3.125rem;
+  border-bottom-left-radius: 3.125rem;
+  border-top-right-radius: 3.125rem;
+  border-bottom-right-radius: 3.125rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0 0.5rem;
+    margin: 0.125rem 0;
+  }
+
+  div:nth-child(2) {
+    border-left: 1px solid colors.$line-border;
+  }
+}

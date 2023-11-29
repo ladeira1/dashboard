@@ -1,0 +1,10 @@
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  max-width: 100%;
+  overflow: hidden;
+
+  @media screen and (max-width: breakpoints.$small) {
+    overflow-x: scroll;
+  }
+}

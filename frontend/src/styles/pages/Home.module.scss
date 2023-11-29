@@ -1,0 +1,11 @@
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  padding: 0.5rem;
+  max-width: 100%;
+  flex: 1;
+
+  @media screen and (min-width: breakpoints.$small) {
+    padding: 1.5rem 2rem;
+  }
+}

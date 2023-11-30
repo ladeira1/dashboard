@@ -1,0 +1,40 @@
+@use "@/styles/variables/colors.module";
+@use "@/styles/variables/breakpoints.module";
+
+.wrapper {
+  max-width: 90vw;
+
+  @media screen and (max-width: breakpoints.$small) {
+    overflow-x: scroll;
+  }
+}
+
+.container {
+  width: 100%;
+  min-width: 37.5rem;
+  border-spacing: 0;
+
+  th {
+    background-color: colors.$gray-50;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: colors.$text-secondary;
+    text-transform: capitalize;
+  }
+
+  tr {
+    line-height: 3.5rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+    color: colors.$text-primary;
+  }
+
+  span {
+    padding-left: 1rem;
+  }
+}
+
+.header {
+  background-color: colors.$gray-50;
+}

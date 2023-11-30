@@ -10,4 +10,5 @@ export interface ModalProps {
   title: string;
   support?: string;
   children: ReactNode;
+  hasCloseButton?: boolean;
 }

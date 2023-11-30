@@ -13,32 +13,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: breakpoints.$small) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
   }
 
   @media screen and (max-width: breakpoints.$small) {
     h2 {
       font-size: 1.25rem;
     }
-  }
-}
-
-.valuesContainer {
-  display: flex;
-  padding: 0.25rem;
-  border-top-left-radius: 3.125rem;
-  border-bottom-left-radius: 3.125rem;
-  border-top-right-radius: 3.125rem;
-  border-bottom-right-radius: 3.125rem;
-
-  div {
-    display: flex;
-    align-items: center;
-    gap: 0.125rem;
-    padding: 0 0.5rem;
-    margin: 0.125rem 0;
-  }
-
-  div:first-child {
-    border-right: 1px solid colors.$line-border;
   }
 }

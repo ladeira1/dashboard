@@ -24,6 +24,10 @@ $ git clone https://github.com/ladeira1/dashboard.git
 $ cd dashboard
 
 # Install the project's dependencies
+$ cd frontend 
+$ npm install or yarn
+$ cd ..
+$ cd server
 $ npm install or yarn
 ```
 ### Running the application

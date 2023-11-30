@@ -11,5 +11,8 @@ export const formatter = {
   },
   toNumber: (value: number) => {
     return new Intl.NumberFormat("en", { notation: "standard" }).format(value)
-  }
+  },
+  toCurrency: (value: number) => {
+    return new Intl.NumberFormat("en", { style: "currency", currency: "USD", notation: "compact" }).format(value)
+  },
 }

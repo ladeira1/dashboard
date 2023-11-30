@@ -221,9 +221,7 @@ export const WidgetList = () => {
   }, [])
 
   return (
-    <section aria-labelledby="title" style={{
-      marginLeft: isCollapsed ? "80px" : "17.75rem" 
-    }}>
+    <section aria-labelledby="title" className={handleClassNames([isCollapsed ? "collapsed-margin-left" : "open-margin-left"])}>
       <header className={styles.header}>
         <h4 id="title" className="semibold">{data?.title}</h4>
         <Button variant="primary" size={isMobile ? "extra-small" : "medium"} onClick={handleToggleWidgetModal}>

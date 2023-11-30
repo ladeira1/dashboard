@@ -1,0 +1,86 @@
+@use "@/styles/variables/colors.module";
+@use "@/styles/variables/breakpoints.module";
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  >li:not(:last-child) {
+    border-bottom: 1px solid colors.$line-divider;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 1.25rem 0;
+
+  >header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    button {
+      margin-left: auto;
+    }
+  }
+
+  @media screen and (max-width: breakpoints.$medium) {
+    >header {
+      h5 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: breakpoints.$smaller) {
+    >ul {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 0;
+    }
+  }
+}
+
+.itemListContainer {
+  display: flex;
+  gap: 2rem;
+  margin-left: 3.125rem;
+
+  >li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    p {
+      color: colors.$text-secondary;
+    }
+
+    >div {
+      gap: 0.5rem;
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: breakpoints.$medium) {
+    >li {
+      p {
+        font-size: 0.75rem;
+      }
+
+      h4 {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: breakpoints.$small) {
+    >li {
+      >div {
+        flex-direction: column;
+      }
+    }
+  }
+}

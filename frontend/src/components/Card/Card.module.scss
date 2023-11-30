@@ -1,0 +1,34 @@
+@use "@/styles/variables/colors.module";
+
+.container {
+  border: 1px solid colors.$line-divider;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  >header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid colors.$line-divider;
+  }
+
+  article {
+    padding: 1.5rem;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

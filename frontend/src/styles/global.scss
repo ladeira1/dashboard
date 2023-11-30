@@ -116,3 +116,17 @@ ul {
 .no-scroll {
   overflow: hidden;
 }
+
+.collapsed-margin-left {
+  margin-left: 5rem;
+}
+
+.open-margin-left {
+  margin-left: 17.75rem;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

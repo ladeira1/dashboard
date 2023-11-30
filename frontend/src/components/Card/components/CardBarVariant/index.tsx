@@ -16,7 +16,7 @@ export const CardBarVariant = ({ series }: CardBarVariantProps) => {
 
             <div className={styles.bar}>
               <div style={{
-                transform: `scaleX(${item.current / item.goal})`
+                transform: `scaleX(${Math.min(item.current / item.goal, 1)})`
               }} />
             </div>
 

@@ -4,7 +4,7 @@
   background-color: colors.$gray-900;
   position: fixed;
   height: 100vh;
-  height: 100dvh;
+  height: max(100%, 100dvh);
   width: 17.75rem;
 
   display: flex;

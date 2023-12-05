@@ -4,7 +4,11 @@ export interface ChartSerie {
   data: number[];
 }
 
-export interface ChartData {
+
+export interface ChartState {
   chartOptions: string[]
   series: ChartSerie[]
+  isLoading: boolean;
 }
+
+export type FetchForChartDataResponse = Pick<ChartState, "chartOptions" | "series">

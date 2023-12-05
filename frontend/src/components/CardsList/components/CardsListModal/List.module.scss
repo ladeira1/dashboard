@@ -1,0 +1,9 @@
+@use "@/styles/variables/colors.module";
+
+.modalButtonRown {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}

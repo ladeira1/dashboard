@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Dashboard',
-  description: 'Feenix.ai Dashboard application',
+  description: 'Dashboard application',
 }
 
 export default function RootLayout({

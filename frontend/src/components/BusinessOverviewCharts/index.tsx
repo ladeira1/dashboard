@@ -6,9 +6,9 @@ import { Tabs } from "../Tabs";
 import { components } from "react-select";
 import { Chart } from "../Chart";
 import colors from "@/styles/variables/colors.module.scss";
-import { ChartData } from "./BusinessOverviewCharts.interface";
-import { useFetch } from "../../hooks/useFetch";
 import { LoadingContainer } from "../LoadingContainer";
+import { useAppDispatch, useAppSelector } from "../../lib/hooks";
+import { fetchForChartData } from "../../lib/features/chart/services/fetchForChartData";
 
 const OPTIONS = [
   { value: "YTD", label: "Year to date (YTD)" },
@@ -18,13 +18,12 @@ const OPTIONS = [
 
 export const BusinessOverviewCharts = () => {
   const [filter, setFilter] = useState(OPTIONS[0])
-  const fetchChartData = useFetch<ChartData>({ method: "GET", url: "/chart" })
+  const { chartOptions, series, isLoading } = useAppSelector(state => state.chart)
+  const dispatch = useAppDispatch()
 
-  const charts = fetchChartData?.data?.chartOptions?.reduce((acc, curr) => {
-    if(!fetchChartData?.data) return {}
-
+  const charts = chartOptions?.reduce((acc, curr) => {
     let props = {
-      series: fetchChartData?.data?.series.map(i => ({
+      series: series.map(i => ({
         ...i,
         color: i.type === "column" ? colors["primary-main"] : colors["warning-main"]
       }))
@@ -34,13 +33,11 @@ export const BusinessOverviewCharts = () => {
   }, {}) ?? {}
 
   useEffect(() => {
-    fetchChartData.makeRequest({params: {
-      filter: filter.value
-    }});
+    dispatch(fetchForChartData(filter.value))
   }, [filter])
   
   return (
-    <LoadingContainer isLoading={fetchChartData?.isLoading}>
+    <LoadingContainer isLoading={isLoading}>
       <section 
         aria-labelledby="business-overview-charts" 
         className={styles.container}
@@ -50,7 +47,7 @@ export const BusinessOverviewCharts = () => {
           <Select options={OPTIONS} value={filter} onChange={v => setFilter(v)} />
         </header>
 
-        {fetchChartData?.data && components && <Tabs options={fetchChartData?.data?.chartOptions} components={charts} />}
+        {chartOptions && components && <Tabs options={chartOptions} components={charts} />}
       </section>
     </LoadingContainer>
   )

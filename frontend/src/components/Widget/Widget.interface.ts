@@ -1,6 +1,6 @@
-import { IconType } from "react-icons";
 import { WidgetVariantValueProps } from "./components/WidgetValueVariant/WidgetValueVariant.interface";
 import { WidgetVariantGrowthProps } from "./components/WidgetGrowthVariant/WidgetGrowthVariant.interface";
+import { Widget } from "../../lib/features/widget/widgetSlice.interface";
 
 export type WidgetVariants = {
   name: "growth",
@@ -10,8 +10,4 @@ export type WidgetVariants = {
   props: WidgetVariantValueProps
 }
 
-export interface WidgetProps {
-  icon: IconType;
-  title: string;
-  variant: WidgetVariants
-}
+export type WidgetProps = Widget

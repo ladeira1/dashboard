@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "apexcharts": "^3.44.0",
     "axios": "^1.6.2",
     "next": "14.0.3",
@@ -16,7 +17,9 @@
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
+    "react-redux": "^9.0.0",
     "react-select": "^5.8.0",
+    "redux-toolkit": "^1.1.2",
     "sass": "^1.69.5"
   },
   "devDependencies": {

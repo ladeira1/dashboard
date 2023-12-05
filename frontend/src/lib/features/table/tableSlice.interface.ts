@@ -6,7 +6,10 @@ export interface TableColumn {
   amount: number;
 }
 
-export interface TableData {
+export interface TableState {
   tableOptions: string[]
   columns: TableColumn[]
+  isLoading: boolean
 }
+
+export type FetchForTableData = Pick<TableState, "columns" | "tableOptions">

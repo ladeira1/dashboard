@@ -5,7 +5,7 @@ import { Icon } from "../Icon";
 import * as HiIcons from "react-icons/hi";
 import styles from "./WidgetList.module.scss"
 import { Select } from "../Select";
-import { Filters, WidgetsData } from "./WidgetList.interface";
+import { Filters } from "./WidgetList.interface";
 import { SelectOption } from "../Select/Select.interface";
 import { Widget } from "../Widget";
 import { useSidebar } from "../../contexts/SidebarContext";
@@ -13,9 +13,11 @@ import { handleClassNames } from "../../utils/handleClassNames";
 import { Modal } from "../Modal";
 import { ModalHandler } from "../Modal/Modal.interface";
 import { Checkbox } from "../Checkbox";
-import { WidgetProps } from "../Widget/Widget.interface";
-import { useFetch } from "../../hooks/useFetch";
 import { LoadingContainer } from "../LoadingContainer";
+import { useAppDispatch, useAppSelector } from "../../lib/hooks";
+import { fetchForWidgetList } from "../../lib/features/widget/services/fetchForWidgetList";
+import { updateShownItems } from "../../lib/features/widget/widgetSlice";
+import { fetchForWidgetFilters } from "../../lib/features/widget/services/fetchForWidgetFilters";
 
 const PERIOD_OPTIONS = [
   { value: "28", label: "Last 4 weeks" },
@@ -33,14 +35,12 @@ const COMPARED_TO_FREQUENCY_OPTIONS = [
 ]
 
 export const WidgetList = () => {
-  const [data, setData] = useState<WidgetsData>()
   const [filters, setFilters] = useState<Filters>()
-  const [shownItems, setShownItems] = useState<string[]>([])
   const { isMobile } = useSidebar()
   const modalRef = useRef<ModalHandler>(null)
 
-  const fetchWidgetFilters = useFetch<string[]>({ method: "GET", url: "/widgetFilters" })
-  const fetchWidgets = useFetch<WidgetsData>({ method: "GET", url: "/widgets" })
+  const dispatch = useAppDispatch()
+  const { widgetsData, filters: widgetFilters, shownItems, isLoading } = useAppSelector(state => state.widget)
 
   const handleChangeFilter = (key: keyof Filters, value: SelectOption) => {
     setFilters(oldState => ({
@@ -50,14 +50,7 @@ export const WidgetList = () => {
   }
 
   const handleChangeShownItems = (name: string, value: boolean) => {
-    setShownItems(oldState => {
-      const item = oldState.find(i => i === name)
-      if(item) {
-        return oldState.filter(i => i !== name)
-      }
-
-      return [...oldState, name]
-    })
+    dispatch(updateShownItems(name))
   }
 
   const handleToggleWidgetModal = () => {
@@ -65,20 +58,7 @@ export const WidgetList = () => {
   }
 
   const handleFetchWidgets = async () => {
-    fetchWidgets.makeRequest({
-      onSuccess: data => {
-        let result: WidgetsData = data.data;
-
-        if(shownItems.length > 0) {
-          result = {
-            ...data?.data,
-            widgets: data?.data?.widgets.filter(i => shownItems.includes(i.title)) as WidgetProps[]
-          }
-        }
-
-        setData(result)
-      }
-    });
+    dispatch(fetchForWidgetList())
   }
 
   const handleFilterShownItems = async () => {
@@ -91,14 +71,14 @@ export const WidgetList = () => {
   }, [filters])
 
   useEffect(() => {
-    fetchWidgetFilters.makeRequest()
+    dispatch(fetchForWidgetFilters())
   }, [])
 
   return (
-    <LoadingContainer isLoading={fetchWidgetFilters?.isLoading || fetchWidgets?.isLoading}>
+    <LoadingContainer isLoading={isLoading}>
       <section aria-labelledby="title">
         <header className={styles.header}>
-          <h4 id="title" className="semibold">{data?.title}</h4>
+          <h4 id="title" className="semibold">{widgetsData?.title}</h4>
           <Button variant="primary" size={isMobile ? "extra-small" : "medium"} onClick={handleToggleWidgetModal}>
             <Icon icon={HiIcons.HiViewGrid} color="white" />
             Add / Remove widgets
@@ -113,7 +93,7 @@ export const WidgetList = () => {
         </div>
 
         <ul className={styles.list}>
-          {data?.widgets?.map(item => (
+          {widgetsData?.widgets?.map(item => (
             <li key={item.title}>
               <Widget {...item} icon={(HiIcons as any)[item.icon as any]} />
             </li>
@@ -124,9 +104,9 @@ export const WidgetList = () => {
           * Growth / Decrease numbers are compared to last period
         </p>  
 
-        <Modal title="Add / Remove Widgets" support={`Max ${fetchWidgetFilters?.data?.length} itens`} ref={modalRef}>
+        <Modal title="Add / Remove Widgets" support={`Max ${widgetFilters?.length} itens`} ref={modalRef}>
           <ul className={styles.modalBody}>
-            {fetchWidgetFilters?.data?.map(item => (
+            {widgetFilters?.map(item => (
               <li key={item}>
                 <Checkbox label={item} value={shownItems.includes(item)} onChange={(e) => {
                   handleChangeShownItems(item, (e.target as any).checked)

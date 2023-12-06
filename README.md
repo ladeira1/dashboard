@@ -25,10 +25,12 @@ $ cd dashboard
 
 # Install the project's dependencies
 $ cd frontend 
-$ npm install or yarn
+$ npm install
 $ cd ..
-$ cd server
-$ npm install or yarn
+$ cd backend
+$ npm install
+$ npx prisma db push
+$ npm run populate-db
 ```
 ### Running the application
 
@@ -37,13 +39,13 @@ On the first terminal:
 ```
 # Run the application
 $ cd frontend
-$ npm run dev or yarn dev
+$ npm run dev
 ```
 
 On the second terminal:
 
 ```
 # Run the application
-$ cd server
-$ npm run server or yarn server
+$ cd backend
+$ npm run server
 ```

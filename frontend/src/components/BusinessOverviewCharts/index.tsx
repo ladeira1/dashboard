@@ -21,20 +21,11 @@ export const BusinessOverviewCharts = () => {
   const { chartOptions, series, isLoading } = useAppSelector(state => state.chart)
   const dispatch = useAppDispatch()
 
-  const charts = chartOptions?.reduce((acc, curr) => {
-    let props = {
-      series: series.map(i => ({
-        ...i,
-        color: i.type === "column" ? colors["primary-main"] : colors["warning-main"]
-      }))
-    }
-
-    return { ...acc, [curr]: <Chart {...props} categories={["Jan", "Fev", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]} /> }
-  }, {}) ?? {}
-
   useEffect(() => {
     dispatch(fetchForChartData(filter.value))
   }, [filter])
+
+  if(!chartOptions || chartOptions.length === 0) return null
   
   return (
     <LoadingContainer isLoading={isLoading}>
@@ -47,7 +38,15 @@ export const BusinessOverviewCharts = () => {
           <Select options={OPTIONS} value={filter} onChange={v => setFilter(v)} />
         </header>
 
-        {chartOptions && components && <Tabs options={chartOptions} components={charts} />}
+        {chartOptions && components && (
+          <Chart
+            series={series.map(i => ({
+              ...i,
+              color: i.type === "column" ? colors["primary-main"] : colors["warning-main"]
+            }))}
+            categories={["Jan", "Fev", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]} 
+          />
+        )}
       </section>
     </LoadingContainer>
   )

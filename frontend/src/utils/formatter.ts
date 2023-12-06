@@ -1,3 +1,4 @@
+import { format, parseISO } from "date-fns"
 export const formatter = {
   toPercentage: (value: number) => {
     return new Intl.NumberFormat("default", {
@@ -15,4 +16,13 @@ export const formatter = {
   toCurrency: (value: number) => {
     return new Intl.NumberFormat("en", { style: "currency", currency: "USD", notation: "compact" }).format(value)
   },
+  toCompactDate: (value: string | Date | number) => {
+    if(typeof value === "number") return value;
+    try {
+      const parsed = parseISO(value as string)
+      return format(parsed, "MMM dd, yyyy")
+    } catch {
+      return value as string
+    }
+  }
 }

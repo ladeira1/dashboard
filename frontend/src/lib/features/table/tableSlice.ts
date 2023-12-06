@@ -4,7 +4,6 @@ import { fetchForTableData } from "./services/fetchForTableData";
 
 const initialState: TableState = {
   columns: [],
-  tableOptions: [],
   isLoading: false,
 }
 
@@ -20,7 +19,6 @@ export const tableSlice = createSlice({
     builder.addCase(fetchForTableData.fulfilled, (state, action) => {
       state.isLoading = false
       state.columns = action.payload.columns
-      state.tableOptions = action.payload.tableOptions
     })
 
     builder.addCase(fetchForTableData.rejected, state => {

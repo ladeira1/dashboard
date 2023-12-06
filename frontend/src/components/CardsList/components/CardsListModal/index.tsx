@@ -12,7 +12,11 @@ export const CardsListModal = ({ modalRef }: ListProps) => {
   const { goals, series } = useAppSelector(state => state.card)
 
   const handleUpdateGoals = async () => {
-    dispatch(fetchUpdateSeries(goals))
+    const data = series.filter(s => goals[s.text] !== s.goal).map(s => ({
+      ...s,
+      goal: goals[s.text],
+    }))
+    dispatch(fetchUpdateSeries(data))
     modalRef?.current?.onClose()
   }
 

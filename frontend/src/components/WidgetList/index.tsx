@@ -58,7 +58,7 @@ export const WidgetList = () => {
   }
 
   const handleFetchWidgets = async () => {
-    dispatch(fetchForWidgetList())
+    dispatch(fetchForWidgetList({ titles: shownItems, filters }))
   }
 
   const handleFilterShownItems = async () => {
@@ -66,7 +66,7 @@ export const WidgetList = () => {
     modalRef?.current?.onClose()
   }
 
-   useEffect(() => {
+  useEffect(() => {
     handleFetchWidgets()
   }, [filters])
 

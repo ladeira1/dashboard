@@ -1,0 +1,180 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Button {
+  id      Int                   @id @default(autoincrement())
+  text    String
+  icon    String?
+  widgets WidgetGrowthVariant[]
+  Card    Card[]
+}
+
+model WidgetGrowthVariant {
+  id         Int      @id @default(autoincrement())
+  amount     Float
+  status     String
+  difference Float
+  percentage Float
+  button     Button   @relation(fields: [buttonId], references: [id])
+  buttonId   Int
+  widgets    Widget[]
+}
+
+model WidgetValueItem {
+  id                   Int                 @id @default(autoincrement())
+  text                 String
+  amount               Float
+  color                String?
+  WidgetValueVariant   WidgetValueVariant? @relation(fields: [widgetValueVariantId], references: [id])
+  widgetValueVariantId Int?
+}
+
+model WidgetValueVariant {
+  id      Int               @id @default(autoincrement())
+  items   WidgetValueItem[] @relation(fields: [])
+  widgets Widget[]
+}
+
+model Widget {
+  id                    Int                  @id @default(autoincrement())
+  icon                  String
+  title                 String
+  createdAt             DateTime             @default(now())
+  widgetValueVariant    WidgetValueVariant?  @relation(fields: [widgetValueVariantId], references: [id])
+  widgetGrowthVariant   WidgetGrowthVariant? @relation(fields: [widgetGrowthVariantId], references: [id])
+  widgetValueVariantId  Int?
+  widgetGrowthVariantId Int?
+}
+
+model Title {
+  id    Int    @id @default(autoincrement())
+  title String
+}
+
+model TableColumn {
+  id          Int      @id @default(autoincrement())
+  statementId String
+  startDate   DateTime
+  endDate     DateTime
+  depositDate DateTime
+  amount      Float
+  Table       Table?   @relation(fields: [tableId], references: [id])
+  tableId     Int?
+}
+
+model Table {
+  id      Int           @id @default(autoincrement())
+  columns TableColumn[]
+}
+
+model ChartOption {
+  id      Int    @id @default(autoincrement())
+  name    String
+  Chart   Chart? @relation(fields: [chartId], references: [id])
+  chartId Int?
+}
+
+model ChartSeriesData {
+  id            Int          @id @default(autoincrement())
+  data          Int
+  ChartSeries   ChartSeries? @relation(fields: [chartSeriesId], references: [id])
+  chartSeriesId Int?
+}
+
+model ChartSeries {
+  id      Int               @id @default(autoincrement())
+  name    String
+  type    String
+  data    ChartSeriesData[]
+  Chart   Chart?            @relation(fields: [chartId], references: [id])
+  chartId Int?
+}
+
+model Chart {
+  id           Int           @id @default(autoincrement())
+  chartOptions ChartOption[]
+  series       ChartSeries[]
+}
+
+model Series {
+  id      Int    @id @default(autoincrement())
+  text    String
+  legend  String
+  goal    Float
+  current Float
+}
+
+model CardListVariantItemValue {
+  id                    Int                  @id @default(autoincrement())
+  title                 String
+  amount                Float
+  difference            Float
+  status                String
+  CardListVariantItem   CardListVariantItem? @relation(fields: [cardListVariantItemId], references: [id])
+  cardListVariantItemId Int?
+}
+
+model CardListVariantItem {
+  id     Int                        @id @default(autoincrement())
+  title  String
+  values CardListVariantItemValue[]
+  Card   Card?                      @relation(fields: [cardId], references: [id])
+  cardId Int?
+}
+
+model CardLineVariantData {
+  id                Int              @id @default(autoincrement())
+  value             Float
+  CardLineVariant   CardLineVariant? @relation(fields: [cardLineVariantId], references: [id])
+  cardLineVariantId Int?
+}
+
+model CardLineVariant {
+  id     Int                   @id @default(autoincrement())
+  name   String
+  color  String
+  data   CardLineVariantData[]
+  Card   Card?                 @relation(fields: [cardId], references: [id])
+  cardId Int?
+}
+
+model CardActivitiesVariantTag {
+  id                      Int                    @id @default(autoincrement())
+  value                   String
+  color                   String
+  backgroundColor         String
+  CardActivitiesVariant   CardActivitiesVariant? @relation(fields: [cardActivitiesVariantId], references: [id])
+  cardActivitiesVariantId Int?
+}
+
+model CardActivitiesVariant {
+  id       Int                        @id @default(autoincrement())
+  date     DateTime
+  subtitle String
+  title    String
+  tags     CardActivitiesVariantTag[]
+  Card     Card?                      @relation(fields: [cardId], references: [id])
+  cardId   Int?
+}
+
+model Card {
+  id            Int                     @id @default(autoincrement())
+  title         String
+  difference    Float?
+  supportAmount Float?
+  supportText   String?
+  button        Button?                 @relation(fields: [buttonId], references: [id])
+  items         CardListVariantItem[]
+  series        CardLineVariant[]
+  activities    CardActivitiesVariant[]
+  buttonId      Int?
+}

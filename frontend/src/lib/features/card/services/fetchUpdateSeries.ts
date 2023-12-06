@@ -2,10 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../../../services/api";
 import { Serie } from "../cardSlice.interface";
 
-export const fetchUpdateSeries = createAsyncThunk<Serie[], Record<string, any>>(
+export const fetchUpdateSeries = createAsyncThunk<Serie[], Serie[]>(
   "card/update-series",
   async (data) => {
-    const response = await api.post("/updateSeries", data)
+    const response = await api.put("/series/update", data)
     return response?.data ?? []
   }
 )

@@ -1,7 +1,7 @@
 import { CircleProps } from "../../../Circle/Circle.interface";
 
 export type CardActivitiesVariantItem = {
-  date: string;
+  date: Date;
   title: string;
   subtitle: string;
   tags?: CircleProps[]

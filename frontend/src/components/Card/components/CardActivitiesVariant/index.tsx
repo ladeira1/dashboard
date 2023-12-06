@@ -1,3 +1,4 @@
+import { formatter } from "../../../../utils/formatter"
 import { handleClassNames } from "../../../../utils/handleClassNames"
 import { Circle } from "../../../Circle"
 import { CardActivitiesVariantProps } from "./CardActivitiesVariant.interface"
@@ -8,7 +9,7 @@ export const CardActiviesVariant = ({ items }: CardActivitiesVariantProps) => {
     <ul className={styles.container}>
       {items?.map(item => (
         <li key={item.title}>
-          <p className="sm regular">{item.date}</p>
+          <p className="sm regular">{formatter.toCompactDate(item.date)}</p>
           <div className={styles.divider}>
             <div className={styles.circle}/>
             <div className={styles.line}/>

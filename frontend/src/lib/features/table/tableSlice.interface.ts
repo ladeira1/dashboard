@@ -7,9 +7,8 @@ export interface TableColumn {
 }
 
 export interface TableState {
-  tableOptions: string[]
   columns: TableColumn[]
   isLoading: boolean
 }
 
-export type FetchForTableData = Pick<TableState, "columns" | "tableOptions">
+export type FetchForTableData = Pick<TableState, "columns">

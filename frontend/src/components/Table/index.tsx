@@ -1,3 +1,4 @@
+import { formatter } from "../../utils/formatter"
 import { TableProps } from "./Table.interface"
 import styles from "./Table.module.scss"
 
@@ -20,10 +21,10 @@ export const Table = ({ headers, columns }: TableProps) => {
         <tbody>
           {columns?.map((column, index) => (
             <tr key={index}>
-              {column?.rows?.map(row => (
-                <td key={row}>
+              {column?.rows?.map((row, index) => (
+                <td key={index}>
                   <span>
-                    {row}
+                    {formatter.toCompactDate(row)}
                   </span>
                 </td>
               ))}

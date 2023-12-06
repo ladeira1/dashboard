@@ -11,12 +11,14 @@ import { CardsListModal } from "./components/CardsListModal"
 export const CardsList = () => {
   const modalRef = useRef<ModalHandler>(null)
   const dispatch = useAppDispatch()
-  const { isLoading } = useAppSelector(state => state.card)
+  const { isLoading, goals, series } = useAppSelector(state => state.card)
 
   useEffect(() => {
     dispatch(fetchForSeries())
     dispatch(fetchForCards())
   }, [])
+
+  if(!goals || !series || series?.length === 0) return null;
 
   return (
     <LoadingContainer isLoading={isLoading}>

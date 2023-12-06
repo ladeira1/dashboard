@@ -5,7 +5,7 @@ import { Card } from "../cardSlice.interface";
 export const fetchForCards = createAsyncThunk<Card[]>(
   "card/list",
   async () => {
-    const response = await api.get("/cardItems")
+    const response = await api.get("/cards")
     return response?.data ?? []
   }
 )

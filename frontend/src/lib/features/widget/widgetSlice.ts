@@ -21,6 +21,7 @@ export const widgetSlice = createSlice({
       const item = state.shownItems.find(i => i === action.payload)
       if(item) {
         state.shownItems = state.shownItems.filter(i => i !== action.payload)
+        return;
       }
 
       state.shownItems = [...state.shownItems, action.payload]
@@ -36,16 +37,6 @@ export const widgetSlice = createSlice({
 
     builder.addCase(fetchForWidgetList.fulfilled, (state, action) => {
       state.isLoading = false
-
-      if(state.shownItems.length >= 1) {
-        state.widgetsData = {
-          title: action.payload.title,
-          widgets: action.payload.widgets.filter(i => state.shownItems.includes(i.title))
-        }
-
-        return
-      }
-
       state.widgetsData = action.payload
     })
 

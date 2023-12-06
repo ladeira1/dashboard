@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Select } from "../Select"
 import styles from "./BusinessOverViewTable.module.scss"
-import { Tabs } from "../Tabs"
 import { Table } from "../Table"
 import { LoadingContainer } from "../LoadingContainer"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
@@ -16,25 +15,14 @@ const OPTIONS = [
 export const BusinessOverviewTable = () => {
   const [filter, setFilter] = useState(OPTIONS[0])
   const dispatch = useAppDispatch()
-  const { isLoading, columns, tableOptions } = useAppSelector(state => state.table)
+  const { isLoading, columns, } = useAppSelector(state => state.table)
 
   useEffect(() => {
     dispatch(fetchForTableData(filter.value))
   }, [filter])
 
-  const tables = tableOptions?.reduce((acc, curr) => {
-    const props = {
-      headers: Object.keys(columns?.[0]),
-      columns: columns?.map(column => {
-        return {
-          rows: Object.values(column)
-        }
-      })
-    }
-
-    return { ...acc, [curr]: <Table {...props} /> }
-  }, {}) ?? {}
-  
+  if(!columns || columns?.length <= 0) return null;
+ 
   return (
     <LoadingContainer isLoading={isLoading}>
       <section 
@@ -46,7 +34,14 @@ export const BusinessOverviewTable = () => {
           <Select options={OPTIONS} value={filter} onChange={v => setFilter(v)} />
         </header>
 
-        {tableOptions && <Tabs options={tableOptions} components={tables} />}
+        <Table 
+          headers={Object.keys(columns?.[0])}
+          columns={columns?.map(column => {
+            return {
+              rows: Object.values(column)
+            }
+          })}
+        />
       </section>
     </LoadingContainer>
   )
